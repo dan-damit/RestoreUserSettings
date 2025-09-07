@@ -1,0 +1,19 @@
+# Ignore Visual Studio folders
+.vs/
+*.bin
+
+# Ignore build artifacts
+bin/
+obj/
+Publish/
+Deploy/
+*.rtf
+*.wixpdb
+*.user
+*.suo
+*.cache
+*.log
+*.snk
+*.sln
+*.html
+*.htm
