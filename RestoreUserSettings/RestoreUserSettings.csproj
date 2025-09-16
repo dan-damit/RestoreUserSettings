@@ -7,11 +7,11 @@
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<UseWPF>true</UseWPF>
-		<ApplicationIcon>AdvTechLogo.ico</ApplicationIcon>
+		<ApplicationIcon>WSSetupIcon.ico</ApplicationIcon>
 
 		<AssemblyTitle>User Settings Restore</AssemblyTitle>
 		<FileVersion>1.0.0.0</FileVersion>
-		<Company>Advantage Technologies</Company>
+		<Company>Home IT Innovations</Company>
 		<Authors>Dan Damit</Authors>
 		<Description>Lightweight WPF User Settings Restore App</Description>
 		<Copyright>© 2025 Dan Damit</Copyright>
@@ -25,7 +25,7 @@
 		<IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
 		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
 
-		<Version>1.0.$([System.DateTime]::Now.ToString("yyMM")).$([System.DateTime]::Now.ToString("ddHH"))</Version>
+		<Version>1.1.$([System.DateTime]::Now.ToString("yyMM")).$([System.DateTime]::Now.ToString("ddHH"))</Version>
 
 		<!-- Embed manifest for admin elevation -->
 		<ApplicationManifest>app.manifest</ApplicationManifest>
