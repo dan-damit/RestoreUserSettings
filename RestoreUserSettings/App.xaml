@@ -25,7 +25,7 @@
                          Color="{StaticResource TextColor}" />
 
         <!-- Button Style -->
-        <Style x:Key="AdvTechButtonStyle"
+        <Style x:Key="DarkSteelButtonStyle"
                TargetType="Button">
             <Setter Property="Background"
                     Value="{StaticResource AccentBrush}" />

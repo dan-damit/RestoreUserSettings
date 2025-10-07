@@ -9,19 +9,18 @@
 		<UseWPF>true</UseWPF>
 		<ApplicationIcon>WSSetupIcon.ico</ApplicationIcon>
 
-		<AssemblyTitle>User Settings Restore</AssemblyTitle>
-		<FileVersion>1.0.0.0</FileVersion>
-		<Company>Home IT Innovations</Company>
+		<AssemblyTitle>Restore Workstation Tool</AssemblyTitle>
+		<FileVersion>1.1.0.0</FileVersion>
+		<Company>Dan.Damit.Automation</Company>
 		<Authors>Dan Damit</Authors>
-		<Description>Lightweight WPF User Settings Restore App</Description>
+		<Description>Lightweight WPF User Settings and Data Restore App</Description>
 		<Copyright>© 2025 Dan Damit</Copyright>
 
 		<!-- Trim unused assemblies for smaller EXE -->
 		<PublishSingleFile>true</PublishSingleFile>
 		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
-		<SelfContained>true</SelfContained>
+		<SelfContained>false</SelfContained>
 		<PublishReadyToRun>true</PublishReadyToRun>
-		<EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
 		<IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
 		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
 
