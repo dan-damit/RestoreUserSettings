@@ -46,8 +46,7 @@ namespace RestoreWorkstation
             }
         }
 
-        // Restore button click handler
-        private void Restore_Click(object sender, RoutedEventArgs e)
+        private async void Restore_Click(object sender, RoutedEventArgs e)
         {
             string path = backupRootFolder.Text.Trim();
             if (string.IsNullOrWhiteSpace(path))
@@ -64,8 +63,11 @@ namespace RestoreWorkstation
             _restoreManager ??= new RestoreManager();
 
             Logger.Log("🔄 Starting data restore...");
-            bool success = _restoreManager.RestoreToUserProfile(path);
-            bool regSuccess = _restoreManager.MergeRegistryKeys(path);
+
+            var progress = new Progress<int>(percent => progressBar.Value = percent);
+
+            bool success = await _restoreManager.RestoreToUserProfileAsync(path, progress);
+            bool regSuccess = await _restoreManager.MergeRegistryKeysAsync(path);
 
             if (success && regSuccess)
                 Logger.Log("✅ Restore completed.");
