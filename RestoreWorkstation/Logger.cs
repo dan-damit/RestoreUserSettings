@@ -25,7 +25,7 @@ namespace RestoreWorkstation
             string line = $"[{DateTime.Now:HH:mm:ss}] {message}";
             File.AppendAllText(_logFilePath, line + Environment.NewLine);
 
-            Application.Current.Dispatcher.Invoke(() =>
+            System.Windows.Application.Current.Dispatcher.Invoke(() =>
             {
                 LogMessageReceived?.Invoke(line);
             });

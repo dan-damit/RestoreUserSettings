@@ -25,7 +25,7 @@ namespace RestoreWorkstation
         }
         private void Ok_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            System.Windows.Application.Current.Shutdown();
         }
     }
 }

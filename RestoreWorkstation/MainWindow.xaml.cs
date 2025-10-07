@@ -33,15 +33,17 @@ namespace RestoreWorkstation
         // Browse button click handler
         private void Browse_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new OpenFileDialog
+            using var dialog = new FolderBrowserDialog
             {
-                Title = "Select Root Backup Data Folder"
+                Description = "Select Root Backup Data Folder",
+                UseDescriptionForTitle = true,
+                ShowNewFolderButton = false
             };
 
-            if (dialog.ShowDialog() == true)
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                backupRootFolder.Text = dialog.FileName;
-                Logger.Log($"📂 Selected file: {dialog.FileName}");
+                backupRootFolder.Text = dialog.SelectedPath;
+                Logger.Log($"📂 Selected folder: {dialog.SelectedPath}");
             }
         }
 
@@ -57,7 +59,7 @@ namespace RestoreWorkstation
 
             // UI preflight
             btnRestore.IsEnabled = false;
-            this.Cursor = Cursors.Wait;
+            this.Cursor = System.Windows.Input.Cursors.Wait;
             _logEntries.Clear();
             progressBar.Value = 0;
             _restoreManager ??= new RestoreManager();
@@ -77,7 +79,7 @@ namespace RestoreWorkstation
 
             // restore UI
             btnRestore.IsEnabled = true;
-            this.Cursor = Cursors.Arrow;
+            this.Cursor = System.Windows.Input.Cursors.Arrow;
         }
 
         // Update log messages in the UI

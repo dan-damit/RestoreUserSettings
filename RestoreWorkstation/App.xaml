@@ -1,7 +1,7 @@
-﻿<Application x:Class="RestoreUserSettings.App"
+﻿<Application x:Class="RestoreWorkstation.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:RestoreUserSettings"
+             xmlns:local="clr-namespace:RestoreWorkstation"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
 
