@@ -60,7 +60,6 @@ namespace RestoreWorkstation
         public bool MergeRegistryKeys(string sourcePath)
         {
             string regKeyFolder = Path.Combine(sourcePath, "RegKeys");
-            Logger.Init(Path.Combine(Path.GetTempPath(), "RestoreWorkstation", "regRestore.log"));
 
             if (!Directory.Exists(regKeyFolder))
             {

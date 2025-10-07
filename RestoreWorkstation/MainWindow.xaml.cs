@@ -6,10 +6,9 @@ using System.Windows.Input;
 
 namespace RestoreWorkstation
 {
+    [SupportedOSPlatform("windows")]
     public partial class MainWindow : Window
     {
-        [SupportedOSPlatform("windows")]
-
         private ObservableCollection<string> _logEntries = new ObservableCollection<string>();
         private RestoreManager? _restoreManager;
 
