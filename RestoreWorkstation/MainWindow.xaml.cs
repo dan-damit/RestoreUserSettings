@@ -70,6 +70,13 @@ namespace RestoreWorkstation
         // Close the application
         private void Close_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show(
+                "🔁 Reboot to finalize restore.\n\nSome changes may not take effect until after a restart.",
+                "Restore Complete",
+                MessageBoxButton.OK,
+                MessageBoxImage.Information
+            );
+
             Close();
         }
     }
