@@ -10,7 +10,7 @@
 		<ApplicationIcon>WSSetupIcon.ico</ApplicationIcon>
 
 		<AssemblyTitle>Restore Workstation Tool</AssemblyTitle>
-		<FileVersion>1.1.0.0</FileVersion>
+		<FileVersion>1.2.0.0</FileVersion>
 		<Company>Dan.Damit.Automation</Company>
 		<Authors>Dan Damit</Authors>
 		<Description>Lightweight WPF User Settings and Data Restore App</Description>
@@ -24,7 +24,7 @@
 		<IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
 		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
 
-		<Version>1.1.$([System.DateTime]::Now.ToString("yyMM")).$([System.DateTime]::Now.ToString("ddHH"))</Version>
+		<Version>1.2.$([System.DateTime]::Now.ToString("yyMM")).$([System.DateTime]::Now.ToString("ddHH"))</Version>
 
 		<!-- Embed manifest for admin elevation -->
 		<ApplicationManifest>app.manifest</ApplicationManifest>
