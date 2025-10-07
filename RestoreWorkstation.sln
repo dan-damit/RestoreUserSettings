@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36408.4
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestoreWorkstation", "RestoreUserSettings\RestoreWorkstation.csproj", "{FAC7D3D4-4D5C-43EC-B892-4B9D36D62BFE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestoreWorkstation", "RestoreWorkstation\RestoreWorkstation.csproj", "{FAC7D3D4-4D5C-43EC-B892-4B9D36D62BFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
