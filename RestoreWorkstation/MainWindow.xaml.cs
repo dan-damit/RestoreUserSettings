@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using System.Collections.ObjectModel;
 using System.Runtime.Versioning;
 using System.Windows;
 using System.Windows.Input;
@@ -9,11 +10,14 @@ namespace RestoreWorkstation
     {
         [SupportedOSPlatform("windows")]
 
+        private ObservableCollection<string> _logEntries = new ObservableCollection<string>();
         private RestoreManager? _restoreManager;
 
         public MainWindow()
         {
             InitializeComponent();
+            LogBox.ItemsSource = _logEntries;
+            Logger.LogMessageReceived += OnLogMessage;
         }
 
         // Enable window dragging from the title bar area
@@ -51,6 +55,11 @@ namespace RestoreWorkstation
                 return;
             }
 
+            // UI preflight
+            btnRestore.IsEnabled = false;
+            this.Cursor = Cursors.Wait;
+            _logEntries.Clear();
+            progressBar.Value = 0;
             _restoreManager ??= new RestoreManager();
 
             Logger.Log("🔄 Starting data restore...");
@@ -65,19 +74,28 @@ namespace RestoreWorkstation
                 Logger.Log("⚠ Partial restore: file copy failed, registry merge succeeded.");
             else
                 Logger.Log("⚠ Partial restore: file copy succeeded, registry merge failed.");
+
+            // restore UI
+            btnRestore.IsEnabled = true;
+            this.Cursor = Cursors.Arrow;
+        }
+
+        // Update log messages in the UI
+        private void OnLogMessage(string message)
+        {
+            _logEntries.Add(message);
+            if (LogBox.Items.Count > 0)
+            {
+                LogBox.ScrollIntoView(LogBox.Items[LogBox.Items.Count - 1]);
+            }
         }
 
         // Close the application
         private void Close_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(
-                "🔁 Reboot to finalize restore.\n\nSome changes may not take effect until after a restart.",
-                "Restore Complete",
-                MessageBoxButton.OK,
-                MessageBoxImage.Information
-            );
-
-            Close();
+            var prompt = new RebootPrompt();
+            prompt.Owner = this;
+            prompt.ShowDialog();
         }
     }
 }

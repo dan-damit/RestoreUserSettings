@@ -11,7 +11,7 @@ namespace RestoreWorkstation
         }
 
         // Restores files from the given source path to the current user's profile directory.
-        public bool RestoreToUserProfile(string sourcePath)
+        public bool RestoreToUserProfile(string sourcePath, Action<int>? reportProgress = null)
         {
             if (string.IsNullOrWhiteSpace(sourcePath) || !Directory.Exists(sourcePath))
             {
@@ -31,11 +31,19 @@ namespace RestoreWorkstation
                     Directory.CreateDirectory(targetDir);
                 }
 
-                foreach (string filePath in Directory.GetFiles(sourcePath, "*", SearchOption.AllDirectories))
+                string[] files = Directory.GetFiles(sourcePath, "*", SearchOption.AllDirectories);
+                int total = files.Length;
+                int count = 0;
+
+                foreach (string filePath in files)
                 {
                     string targetFile = filePath.Replace(sourcePath, targetPath);
                     File.Copy(filePath, targetFile, overwrite: true);
                     Logger.Log($"✅ Copied: {filePath} → {targetFile}");
+
+                    count++;
+                    int percent = (int)((count / (double)total) * 100);
+                    reportProgress?.Invoke(percent);
                 }
 
                 Logger.Log("🎉 Restore completed successfully.");
@@ -52,6 +60,8 @@ namespace RestoreWorkstation
         public bool MergeRegistryKeys(string sourcePath)
         {
             string regKeyFolder = Path.Combine(sourcePath, "RegKeys");
+            Logger.Init(Path.Combine(Path.GetTempPath(), "RestoreWorkstation", "regRestore.log"));
+
             if (!Directory.Exists(regKeyFolder))
             {
                 Logger.Log("⚠ RegKeys folder not found — skipping registry merge.");

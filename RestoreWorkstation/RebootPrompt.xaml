@@ -1,0 +1,30 @@
+﻿<Window x:Class="RestoreWorkstation.RebootPrompt"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Exit Restore"
+        Height="180"
+        Width="400"
+        WindowStyle="SingleBorderWindow"
+        Foreground="{StaticResource TextBrush}"
+        ResizeMode="NoResize">
+
+    <Border CornerRadius="6"
+            Background="{StaticResource ControlBackgroundBrush}">
+        <Grid Margin="20">
+            <TextBlock TextWrapping="Wrap"
+                       FontSize="14"
+                       Foreground="{StaticResource TextBrush}">
+                <TextBlock.Text>
+                    Reboot to finalize restore.
+                    Some changes may not take effect until after a restart.
+                </TextBlock.Text>
+            </TextBlock>
+            <Button Content="OK"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Width="80"
+                    Style="{StaticResource DarkSteelButtonStyle}"
+                    Click="Ok_Click" />
+        </Grid>
+    </Border>
+</Window>                    

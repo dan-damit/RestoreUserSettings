@@ -1,56 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows;
 
 namespace RestoreWorkstation
 {
     public static class Logger
     {
-        private static readonly List<string> _logEntries = new();
-        private static string? _logFilePath;
-        private static Action<string>? _onLog;
+        // Fields
+        private static string _logFilePath = string.Empty;
+        public static event Action<string>? LogMessageReceived;
 
-        public static void Configure(string? logFilePath = null, Action<string>? onLog = null)
+        // Initialization log file
+        public static void Init(string logFilePath)
         {
             _logFilePath = logFilePath;
-            _onLog = onLog;
+            Directory.CreateDirectory(Path.GetDirectoryName(logFilePath)!);
+            File.WriteAllText(_logFilePath, $"Restore started: {DateTime.Now}\n");
         }
 
+        // Log a message with timestamp
         public static void Log(string message)
         {
-            string timestamped = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss}  {message}";
-            _logEntries.Add(timestamped);
+            string line = $"[{DateTime.Now:HH:mm:ss}] {message}";
+            File.AppendAllText(_logFilePath, line + Environment.NewLine);
 
-            _onLog?.Invoke(timestamped);
-
-            if (!string.IsNullOrWhiteSpace(_logFilePath))
+            Application.Current.Dispatcher.Invoke(() =>
             {
-                try
-                {
-                    File.AppendAllText(_logFilePath, timestamped + Environment.NewLine);
-                }
-                catch (IOException ex)
-                {
-                    _onLog?.Invoke($"[Logger] Failed to write to log file: {ex.Message}");
-                }
-            }
-        }
-
-        public static IEnumerable<string> GetLogEntries() => _logEntries;
-
-        public static void FlushToFile()
-        {
-            if (!string.IsNullOrWhiteSpace(_logFilePath))
-            {
-                try
-                {
-                    File.WriteAllLines(_logFilePath, _logEntries);
-                }
-                catch (IOException ex)
-                {
-                    _onLog?.Invoke($"[Logger] Flush failed: {ex.Message}");
-                }
-            }
+                LogMessageReceived?.Invoke(line);
+            });
         }
     }
 }
