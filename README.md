@@ -1,5 +1,5 @@
 # Restore Workstation Data
-- This is a companion app to the BackupWorkstation app. The purpose is to restore the HKCU hive that was exported during Workstation Backup.
+- This is a companion app to the BackupWorkstation app. The purpose is to restore the local profile data and a few regKeys from the HKCU hive that were copied and exported during Workstation Backup.
 
 - [Latest Release](https://github.com/dan-damit/RestoreWorkstation/releases/latest)
 
